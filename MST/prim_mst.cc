@@ -36,6 +36,7 @@ Prim::Prim(Graph& G)
 	while (!pq.empty()) {
 		v = pq.top().v; pq.pop();
 		if (visit[v]) continue;
+		visit[v] = true;
 		for (auto e : G.adj[v])
 			if (dist[e.v] > e.d) {
 				dist[e.v] = e.d;
