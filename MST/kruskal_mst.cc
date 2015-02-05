@@ -9,7 +9,7 @@ class Kruskal {
  public:
 	std::map<int, int> group;
 	std::vector<Edge> mst;
-	int find(int e);
+	int find(int v);
 	Kruskal(std::vector<Edge>& E);
 };
 
