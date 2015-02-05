@@ -1,19 +1,20 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+using uint = unsigned;
 struct Edge {
-	int v, w; float d;
+	uint v, w; float d;
 };
 
 class Kruskal {
  public:
-	std::map<int, int> group;
+	std::map<uint, uint> group;
 	std::vector<Edge> mst;
-	int find(int v);
+	uint find(uint v);
 	Kruskal(std::vector<Edge>& E);
 };
 
-int Kruskal::find(int v) {
+uint Kruskal::find(uint v) {
 	if (__builtin_expect(group.find(v) == end(group), false)) group[v] = v;
 	return v == group[v] ? v : group[v] = find(v);
 }

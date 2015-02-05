@@ -1,31 +1,31 @@
-#include <map>
 #include <vector>
 #include <queue>
 #include <climits>
 #include <cfloat>
+using uint = unsigned;
 struct Node {
-	int v; float d;
-	Node(int v, float d) : v{v}, d{d} {}
+	uint v; float d;
+	Node(uint v, float d) : v{v}, d{d} {}
 	bool operator<(const Node& n) const {return d > n.d;}
 };
 
 struct Graph {
-	std::map<int, std::vector<Node> > adj;
+	std::vector<std::vector<Node> > adj;
 	size_t V() {return adj.size();}
 };
 
 class Dijkstra_SP {
  public:
-	std::vector<int> parent;
+	std::vector<uint> parent;
 	std::vector<float> dist;
 	std::vector<bool> visit;
 	std::priority_queue<Node> pq;
-	int source;
-	Dijkstra_SP(Graph& G, int s);
+	uint source;
+	Dijkstra_SP(Graph& G, uint s);
 };
 
-Dijkstra_SP::Dijkstra_SP(Graph& G, int s)
-		: parent(G.V(), INT_MAX),
+Dijkstra_SP::Dijkstra_SP(Graph& G, uint s)
+		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false),
 			source{s} {

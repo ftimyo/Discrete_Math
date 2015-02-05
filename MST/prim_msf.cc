@@ -1,25 +1,24 @@
-#include <map>
 #include <vector>
 #include <queue>
 #include <cfloat>
 #include <climits>
-
+using uint = unsigned;
 struct Node {
-	int v; float d;
-	Node(int v, float d) : v{v}, d{d} {}
+	uint v; float d;
+	Node(uint v, float d) : v{v}, d{d} {}
 	bool operator<(const Node& n) const {
 		return d > n.d;
 	}
 };
 
 struct Graph {
-	std::map<int, std::vector<Node>> adj;
+	std::vector<std::vector<Node>> adj;
 	size_t V() {return adj.size();}
 };
 
 class Prim_Forest {
  public:
-	std::vector<int> parent;
+	std::vector<uint> parent;
 	std::vector<float> dist;
 	std::vector<bool> visit;
 	std::priority_queue<Node> pq;
@@ -30,8 +29,7 @@ Prim_Forest::Prim_Forest(Graph& G)
 		: parent(G.V(), INT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false) {
-	for (auto vertex : G.adj) {
-		auto v = vertex.first;
+	for (uint v{0}; v < G.adj.size(); ++v) {
 		if (visit[v]) continue;
 		parent[v] = v; dist[v] = 0.0f; pq.emplace(v, 0.0f);
 		while (!pq.empty()) {
