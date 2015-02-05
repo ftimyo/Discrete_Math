@@ -25,7 +25,7 @@ class Prim {
 };
 
 Prim::Prim(Graph& G)
-		: parent(G.V(), INT_MAX),
+		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false) {
 	uint v = 0;

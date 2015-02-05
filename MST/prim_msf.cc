@@ -26,7 +26,7 @@ class Prim_Forest {
 };
 
 Prim_Forest::Prim_Forest(Graph& G)
-		: parent(G.V(), INT_MAX),
+		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false) {
 	for (uint v{0}; v < G.adj.size(); ++v) {
