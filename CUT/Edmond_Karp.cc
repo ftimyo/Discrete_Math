@@ -54,6 +54,7 @@ float Edmond_Karp::BFS() {
 Edmond_Karp::Edmond_Karp(Digraph& G, uint s, uint t)
 		: visit(G.V(), false), path(G.V(), UINT_MAX),
 			s{s}, t{t}, R{G}, C{G}, max_flow{0} {
+	F.adj.resize(G.V());
 	for (float flow; (flow = BFS()) > 0.0f; max_flow += flow)
 		for (auto v1 = path[t], v2 = t; v1 != v2; v1 = path[v2 = v1]) {
 			F.adj[v1][v2] = F.adj[v1][v2] + flow;
