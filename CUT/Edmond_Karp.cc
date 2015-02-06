@@ -40,7 +40,7 @@ float Edmond_Karp::BFS() {
 	visit[s] = true; path[s] = s; Q.push(s);
 	while (!Q.empty()) {
 		auto v = Q.front(); Q.pop();
-		for (auto f : R.adj[v])
+		for (const auto& f : R.adj[v])
 			if (!visit[f.first] && f.second > 0.0f) {
 				visit[f.first] = true; path[f.first] = v;
 				flow[f.first] = std::min(flow[v], f.second);
@@ -64,7 +64,7 @@ Edmond_Karp::Edmond_Karp(Digraph& G, uint s, uint t)
 		}
 	for (uint v = 0; v < G.V(); ++v)
 		if (visit[v])
-			for (auto e : G.adj[v])
+			for (const auto& e : G.adj[v])
 				if (!visit[e.first])
 					cuts.emplace_back(v, e.first, e.second);
 }

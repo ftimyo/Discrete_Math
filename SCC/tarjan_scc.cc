@@ -24,7 +24,7 @@ class Tarjan_SCC {
 void Tarjan_SCC::DFS(uint v, Digraph& G) {
 	visit[v] = low[v] = ++order;
 	stack_.push(v); inStack_[v] = true;
-	for (auto w : G.adj[v]) {
+	for (const auto& w : G.adj[v]) {
 		if (!visit[w.v]) DFS(w.v, G);
 		if (inStack_[w.v]) low[v] = std::min(low[w.v], low[v]);
 	}

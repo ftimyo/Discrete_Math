@@ -35,7 +35,7 @@ Prim::Prim(Graph& G)
 		v = pq.top().v; pq.pop();
 		if (visit[v]) continue;
 		visit[v] = true;
-		for (auto e : G.adj[v])
+		for (const auto& e : G.adj[v])
 			if (dist[e.v] > e.d) {
 				dist[e.v] = e.d;
 				parent[e.v] = v;
@@ -44,6 +44,4 @@ Prim::Prim(Graph& G)
 	}
 }
 
-int main() {
-	return 0;
-}
+int main() {return 0;}

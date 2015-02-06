@@ -36,7 +36,7 @@ Prim_Forest::Prim_Forest(Graph& G)
 			v = pq.top().v; pq.pop();
 			if (visit[v]) continue;
 			visit[v] = true;
-			for (auto e : G.adj[v])
+			for (const auto& e : G.adj[v])
 				if (e.d < dist[e.v]) {
 					dist[e.v] = e.d; parent[e.v] = v; pq.push(e);
 				}
@@ -44,6 +44,4 @@ Prim_Forest::Prim_Forest(Graph& G)
 	}
 }
 
-int main() {
-	return 0;
-}
+int main() {return 0;}

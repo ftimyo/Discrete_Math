@@ -34,7 +34,7 @@ Dijkstra_SP::Dijkstra_SP(Digraph& G, uint s)
 		auto v = pq.top().v; pq.pop();
 		if (visit[v]) continue;
 		visit[v] = true;
-		for (auto e : G.adj[v])
+		for (const auto& e : G.adj[v])
 			if (dist[e.v] > e.d + dist[v]) {
 				dist[e.v] = e.d + dist[v];
 				parent[e.v] = v;
@@ -43,6 +43,4 @@ Dijkstra_SP::Dijkstra_SP(Digraph& G, uint s)
 	}
 }
 
-int main() {
-	return 0;
-}
+int main() {return 0;}
