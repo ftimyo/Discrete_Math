@@ -37,7 +37,10 @@ void Tarjan_SCC::DFS(uint v, Digraph& G) {
 	}
 }
 
-Tarjan_SCC::Tarjan_SCC(Digraph& G) {
+Tarjan_SCC::Tarjan_SCC(Digraph& G)
+		: visit(G.V(), 0), low(G.V(), 0),
+			scc(G.V(), 0), inStack_(G.V(), false),
+			order{0}, id{0} {
 	for (uint v = 0; v < G.V(); ++v)
 		if (!visit[v]) DFS(v, G);
 }
