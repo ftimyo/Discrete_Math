@@ -45,3 +45,5 @@ AV::AV(Graph& G)
 	for (uint v = 0; v < G.V(); ++v)
 		if (!visit[v]) DFS(v, v, G);
 }
+
+int main() {return 0;}
