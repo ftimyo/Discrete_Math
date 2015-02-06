@@ -30,7 +30,7 @@ class Edmond_Karp {
 	std::vector<Edge> cuts;
 	float max_flow;
 	float BFS();
-	Edmond_Karp(Digraph& G, uint s, uint t);
+	Edmond_Karp(const Digraph& G, uint s, uint t);
 };
 
 float Edmond_Karp::BFS() {
@@ -51,7 +51,7 @@ float Edmond_Karp::BFS() {
 	return 0.0f;
 }
 
-Edmond_Karp::Edmond_Karp(Digraph& G, uint s, uint t)
+Edmond_Karp::Edmond_Karp(const Digraph& G, uint s, uint t)
 		: visit(G.V(), false), path(G.V(), UINT_MAX),
 			s{s}, t{t}, R{G}, C{G}, max_flow{0} {
 	F.adj.resize(G.V());

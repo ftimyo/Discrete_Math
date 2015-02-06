@@ -9,18 +9,18 @@ struct Node {
 
 struct Graph {
 	std::vector<std::vector<Node> > adj;
-	size_t V() {return adj.size();}
+	size_t V() const {return adj.size();}
 };
 
 class AV {
  public:
 	std::vector<uint> visit, low, av;
 	uint order;
-	void DFS(uint p, uint v, Graph& G);
-	AV(Graph& G);
+	void DFS(uint p, uint v, const Graph& G);
+	AV(const Graph& G);
 };
 
-void AV::DFS(uint p, uint v, Graph& G) {
+void AV::DFS(uint p, uint v, const Graph& G) {
 	visit[v] = low[v] = ++order;
 	uint child{0}; bool isAV{false};
 	for (const auto& w : G.adj[v]) {
@@ -38,7 +38,7 @@ void AV::DFS(uint p, uint v, Graph& G) {
 		av.push_back(v);
 }
 
-AV::AV(Graph& G)
+AV::AV(const Graph& G)
 		: visit(G.V(), 0),
 			low(G.V(), 0),
 			order{0} {

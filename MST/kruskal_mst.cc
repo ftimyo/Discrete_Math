@@ -11,7 +11,7 @@ class Kruskal {
 	std::map<uint, uint> group;
 	std::vector<Edge> mst;
 	uint find(uint v);
-	Kruskal(std::vector<Edge>& E);
+	Kruskal(const std::vector<Edge>& E);
 };
 
 uint Kruskal::find(uint v) {
@@ -19,7 +19,7 @@ uint Kruskal::find(uint v) {
 	return v == group[v] ? v : group[v] = find(v);
 }
 
-Kruskal::Kruskal(std::vector<Edge>& E) {
+Kruskal::Kruskal(const std::vector<Edge>& E) {
 	auto weight_cmp = [] (const auto& e1, const auto& e2) {
 		return e1.d < e2.d;};
 	std::sort(begin(E), end(E), weight_cmp);

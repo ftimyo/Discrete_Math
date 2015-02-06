@@ -21,10 +21,10 @@ class Prim {
 	std::vector<float> dist;
 	std::vector<bool> visit;
 	std::priority_queue<Node> pq;
-	Prim(Graph& G);
+	Prim(const Graph& G);
 };
 
-Prim::Prim(Graph& G)
+Prim::Prim(const Graph& G)
 		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false) {

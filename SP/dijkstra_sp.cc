@@ -11,7 +11,7 @@ struct Node {
 
 struct Digraph {
 	std::vector<std::vector<Node> > adj;
-	size_t V() {return adj.size();}
+	size_t V() const {return adj.size();}
 };
 
 class Dijkstra_SP {
@@ -21,10 +21,10 @@ class Dijkstra_SP {
 	std::vector<bool> visit;
 	std::priority_queue<Node> pq;
 	uint source;
-	Dijkstra_SP(Digraph& G, uint s);
+	Dijkstra_SP(const Digraph& G, uint s);
 };
 
-Dijkstra_SP::Dijkstra_SP(Digraph& G, uint s)
+Dijkstra_SP::Dijkstra_SP(const Digraph& G, uint s)
 		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false),

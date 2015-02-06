@@ -13,7 +13,7 @@ struct Node {
 
 struct Graph {
 	std::vector<std::vector<Node>> adj;
-	size_t V() {return adj.size();}
+	size_t V() const {return adj.size();}
 };
 
 class Prim_Forest {
@@ -22,10 +22,10 @@ class Prim_Forest {
 	std::vector<float> dist;
 	std::vector<bool> visit;
 	std::priority_queue<Node> pq;
-	Prim_Forest(Graph& G);
+	Prim_Forest(const Graph& G);
 };
 
-Prim_Forest::Prim_Forest(Graph& G)
+Prim_Forest::Prim_Forest(const Graph& G)
 		: parent(G.V(), UINT_MAX),
 			dist(G.V(), FLT_MAX),
 			visit(G.V(), false) {

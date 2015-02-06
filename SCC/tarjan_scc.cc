@@ -8,7 +8,7 @@ struct Node {
 };
 struct Digraph {
 	std::vector<std::vector<Node> > adj;
-	size_t V() {return adj.size();}
+	size_t V() const {return adj.size();}
 };
 
 class Tarjan_SCC {
@@ -17,11 +17,11 @@ class Tarjan_SCC {
  std::vector<bool> inStack_;
  std::stack<uint> stack_;
  uint order, id;
- void DFS(uint v, Digraph& G);
- Tarjan_SCC(Digraph& G);
+ void DFS(uint v, const Digraph& G);
+ Tarjan_SCC(const Digraph& G);
 };
 
-void Tarjan_SCC::DFS(uint v, Digraph& G) {
+void Tarjan_SCC::DFS(uint v, const Digraph& G) {
 	visit[v] = low[v] = ++order;
 	stack_.push(v); inStack_[v] = true;
 	for (const auto& w : G.adj[v]) {
@@ -37,7 +37,7 @@ void Tarjan_SCC::DFS(uint v, Digraph& G) {
 	}
 }
 
-Tarjan_SCC::Tarjan_SCC(Digraph& G)
+Tarjan_SCC::Tarjan_SCC(const Digraph& G)
 		: visit(G.V(), 0), low(G.V(), 0),
 			scc(G.V(), 0), inStack_(G.V(), false),
 			order{0}, id{0} {
