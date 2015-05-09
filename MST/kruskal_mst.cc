@@ -4,11 +4,10 @@
 #include <cstdio>
 #endif
 
-#include <map>
 #include <vector>
 #include <algorithm>
-#include <numeric>
-#include <iterator>
+#include <numeric>	/*in order to use iota*/
+#include <iterator> 
 using uint = unsigned;
 struct Edge {
 	uint v, w; float d;
