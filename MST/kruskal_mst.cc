@@ -17,38 +17,48 @@ struct Edge {
 class Kruskal {
  public:
 	std::vector<int> sz;
-	std::vector<uint> v_set;
+	std::vector<uint> vs;
 	std::vector<Edge> mst;
-	uint find(uint v);
+	uint root(uint v);
 	void union_pair(uint v, uint w);
 	Kruskal(std::vector<Edge>& E, std::size_t N);
 };
 
 void Kruskal::union_pair(uint v, uint w) {
-	auto i = find(v);
-	auto j = find(w);
+	auto i = root(v);
+	auto j = root(w);
 	if (i == j) return;
-	if (sz[i] < sz[j]) {v_set[i] = j; sz[j] += sz[i];}
-	else {v_set[j] = i; sz[i] += sz[j];}
+	if (sz[i] < sz[j]) {vs[i] = j; sz[j] += sz[i];}
+	else {vs[j] = i; sz[i] += sz[j];}
 }
 
-uint Kruskal::find(uint v) {
-	return v == v_set[v] ? v : v_set[v] = find(v_set[v]);
+uint Kruskal::root(uint v) {
+	return v == vs[v] ? v : vs[v] = root(vs[v]);
 }
+
+/*
+uint Kruskal::root(uint v) {
+	while(v != vs[v]) {
+		vs[v] = vs[vs[v]];
+		v = vs[v];
+	}
+	return v;
+}
+*/
 
 Kruskal::Kruskal(std::vector<Edge>& E, std::size_t N)
 		: sz(N, 1),
-			v_set(N, 0) {
+			vs(N, 0) {
 
 
-	std::iota(std::begin(v_set), std::end(v_set), 0);
+	std::iota(std::begin(vs), std::end(vs), 0);
 
 	auto weight_cmp = [] (const auto& e1, const auto& e2) {
 		return e1.d < e2.d;};
 	std::sort(begin(E), end(E), weight_cmp);
 
 	for (auto e : E) {
-		if (find(e.v) == find(e.w)) continue;
+		if (root(e.v) == root(e.w)) continue;
 		union_pair(e.v, e.w);
 		mst.push_back(e);
 	}
