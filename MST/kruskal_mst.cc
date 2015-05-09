@@ -6,8 +6,8 @@
 
 #include <vector>
 #include <algorithm>
-#include <numeric>	/*in order to use iota*/
-#include <iterator> 
+#include <numeric>
+#include <iterator>
 using uint = unsigned;
 struct Edge {
 	uint v, w; float d;
